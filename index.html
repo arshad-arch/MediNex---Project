@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediNex - Digital Health Companion</title>
+    
+    <!-- Tailwind CSS for rapid UI development -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Tailwind config for custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'health-primary': '#2563eb',
+                        'health-secondary': '#10b981',
+                        'health-accent': '#f59e0b',
+                        'health-danger': '#ef4444'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-health-primary text-white p-2 rounded-lg">
+                        <i class="fas fa-heartbeat text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">MediNex</h1>
+                        <p class="text-sm text-gray-600">Your Digital Health Companion</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#home" class="text-gray-700 hover:text-health-primary transition-colors">Home</a>
+                    <a href="#symptom-checker" class="text-gray-700 hover:text-health-primary transition-colors">Symptom Checker</a>
+                    <a href="#clinic-finder" class="text-gray-700 hover:text-health-primary transition-colors">Find Clinics</a>
+                    <a href="#about" class="text-gray-700 hover:text-health-primary transition-colors">About</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-health-primary">Home</a>
+                <a href="#symptom-checker" class="block text-gray-700 hover:text-health-primary">Symptom Checker</a>
+                <a href="#clinic-finder" class="block text-gray-700 hover:text-health-primary">Find Clinics</a>
+                <a href="#about" class="block text-gray-700 hover:text-health-primary">About</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Medical Disclaimer Banner -->
+    <div class="bg-health-danger text-white py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-center space-x-2 text-center">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span class="text-sm font-medium">
+                    IMPORTANT: This tool is for informational purposes only and is not a substitute for professional medical advice.
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section id="home" class="text-center py-12">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Get Instant Health Insights
+                </h2>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Check your symptoms, learn about potential conditions, and find nearby medical facilities - all in one comprehensive health platform.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToSection('symptom-checker')" class="bg-health-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                        <i class="fas fa-stethoscope"></i>
+                        <span>Check Symptoms</span>
+                    </button>
+                    <button onclick="scrollToSection('clinic-finder')" class="bg-health-secondary text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Find Clinics</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Overview -->
+        <section class="py-12 bg-white rounded-2xl shadow-lg mb-12">
+            <div class="grid md:grid-cols-3 gap-8 px-8">
+                <div class="text-center">
+                    <div class="bg-health-primary text-white p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Symptom Analysis</h3>
+                    <p class="text-gray-600">Input your symptoms and get insights about potential conditions with detailed precautionary measures.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-health-secondary text-white p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-hospital text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Clinic Locator</h3>
+                    <p class="text-gray-600">Find nearby medical facilities with contact information, hours, and directions.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-health-accent text-white p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Health Guidance</h3>
+                    <p class="text-gray-600">Receive comprehensive precautionary advice and recommendations for your health concerns.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Symptom Checker Section -->
+        <section id="symptom-checker" class="py-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Symptom Checker</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Describe your symptoms and get insights about potential conditions. This tool provides general information and should not replace professional medical consultation.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
+                <!-- Step Indicator -->
+                <div class="flex justify-between items-center mb-8">
+                    <div class="flex items-center space-x-4">
+                        <div id="step1-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-health-primary text-white font-semibold">1</div>
+                        <div class="w-16 h-1 bg-gray-200">
+                            <div id="progress1-2" class="h-full bg-health-primary transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <div id="step2-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-500 font-semibold">2</div>
+                        <div class="w-16 h-1 bg-gray-200">
+                            <div id="progress2-3" class="h-full bg-health-primary transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <div id="step3-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-500 font-semibold">3</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Basic Information -->
+                <div id="step1" class="step-content">
+                    <h3 class="text-xl font-semibold mb-6">Step 1: Basic Information</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Age Range</label>
+                            <select id="ageRange" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-health-primary focus:border-transparent">
+                                <option value="">Select age range</option>
+                                <option value="0-12">0-12 years (Child)</option>
+                                <option value="13-17">13-17 years (Teenager)</option>
+                                <option value="18-35">18-35 years (Young Adult)</option>
+                                <option value="36-55">36-55 years (Adult)</option>
+                                <option value="56+">56+ years (Senior)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                            <select id="gender" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-health-primary focus:border-transparent">
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                                <option value="prefer-not-to-say">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <button onclick="nextStep(1)" class="bg-health-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                            Continue to Symptoms
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Symptom Selection -->
+                <div id="step2" class="step-content hidden">
+                    <h3 class="text-xl font-semibold mb-6">Step 2: Select Your Symptoms</h3>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Search and select your symptoms:</label>
+                        <input type="text" id="symptomSearch" placeholder="Type to search symptoms..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-health-primary focus:border-transparent">
+                    </div>
+
+                    <!-- Common Symptoms Grid -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-medium text-gray-700 mb-4">Common Symptoms</h4>
+                        <div id="symptomGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <!-- Symptoms will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Selected Symptoms -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-medium text-gray-700 mb-4">Selected Symptoms</h4>
+                        <div id="selectedSymptoms" class="min-h-12 p-4 border border-gray-200 rounded-lg bg-gray-50">
+                            <p class="text-gray-500 italic">No symptoms selected yet</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button onclick="previousStep(2)" class="bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors">
+                            Back
+                        </button>
+                        <button onclick="nextStep(2)" class="bg-health-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                            Analyze Symptoms
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Results -->
+                <div id="step3" class="step-content hidden">
+                    <h3 class="text-xl font-semibold mb-6">Step 3: Analysis Results</h3>
+                    <div id="analysisResults">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                    <div class="flex justify-between mt-6">
+                        <button onclick="previousStep(3)" class="bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors">
+                            Back
+                        </button>
+                        <button onclick="resetChecker()" class="bg-health-secondary text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                            New Analysis
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clinic Finder Section -->
+        <section id="clinic-finder" class="py-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Find Medical Facilities</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Locate nearby clinics, hospitals, and medical facilities with contact information and directions.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <!-- Location Input -->
+                <div class="mb-6">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                            <input type="text" id="locationInput" placeholder="Enter your location or use current location" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-health-primary focus:border-transparent">
+                        </div>
+                        <div class="flex-shrink-0">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">&nbsp;</label>
+                            <button onclick="getCurrentLocation()" class="w-full md:w-auto bg-health-secondary text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
+                                <i class="fas fa-crosshairs"></i>
+                                <span>Use Current Location</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility Type Filter -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Facility Type</label>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="filterFacilities('all')" class="facility-filter active bg-health-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors">
+                            All Facilities
+                        </button>
+                        <button onclick="filterFacilities('hospital')" class="facility-filter bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-300 transition-colors">
+                            Hospitals
+                        </button>
+                        <button onclick="filterFacilities('clinic')" class="facility-filter bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-300 transition-colors">
+                            Clinics
+                        </button>
+                        <button onclick="filterFacilities('pharmacy')" class="facility-filter bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-300 transition-colors">
+                            Pharmacies
+                        </button>
+                        <button onclick="filterFacilities('emergency')" class="facility-filter bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-300 transition-colors">
+                            Emergency
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Button -->
+                <div class="mb-8">
+                    <button onclick="searchFacilities()" class="bg-health-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                        <i class="fas fa-search"></i>
+                        <span>Search Facilities</span>
+                    </button>
+                </div>
+
+                <!-- Map Container -->
+                <div class="mb-8">
+                    <div id="mapContainer" class="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div class="text-center text-gray-500">
+                            <i class="fas fa-map text-4xl mb-4"></i>
+                            <p>Interactive map will appear here after searching</p>
+                            <p class="text-sm">(Integration with Google Maps API)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results List -->
+                <div id="facilityResults">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4">Nearby Medical Facilities</h4>
+                    <div id="facilityList" class="space-y-4">
+                        <!-- Facility results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-12">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">About MediNex</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Our Mission</h3>
+                            <p class="text-gray-600 mb-4">
+                                MediNex is designed to provide accessible health information and guidance to help users make informed decisions about their health and wellness.
+                            </p>
+                            <ul class="text-gray-600 space-y-2">
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-check-circle text-health-secondary mt-1"></i>
+                                    <span>Easy-to-use symptom analysis</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-check-circle text-health-secondary mt-1"></i>
+                                    <span>Comprehensive medical facility database</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-check-circle text-health-secondary mt-1"></i>
+                                    <span>Evidence-based health recommendations</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Important Disclaimers</h3>
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                                <div class="flex items-start space-x-2">
+                                    <i class="fas fa-exclamation-triangle text-yellow-600 mt-1"></i>
+                                    <div class="text-yellow-800">
+                                        <p class="font-medium mb-1">Not a Medical Diagnosis Tool</p>
+                                        <p class="text-sm">This application provides general health information and should not be used as a substitute for professional medical advice, diagnosis, or treatment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                                <div class="flex items-start space-x-2">
+                                    <i class="fas fa-phone-alt text-red-600 mt-1"></i>
+                                    <div class="text-red-800">
+                                        <p class="font-medium mb-1">Emergency Situations</p>
+                                        <p class="text-sm">In case of medical emergency, call emergency services immediately. Do not rely on this application for emergency medical situations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="bg-health-primary text-white p-2 rounded-lg">
+                            <i class="fas fa-heartbeat text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">MediNex</h3>
+                            <p class="text-gray-400 text-sm">Digital Health Companion</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">
+                        Empowering users with accessible health information and medical facility location services.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#symptom-checker" class="hover:text-white transition-colors">Symptom Checker</a></li>
+                        <li><a href="#clinic-finder" class="hover:text-white transition-colors">Find Clinics</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Emergency Contacts</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone-alt text-red-400"></i>
+                            <span>Emergency: 911</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone-alt text-blue-400"></i>
+                            <span>Poison Control: 1-800-222-1222</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone-alt text-green-400"></i>
+                            <span>Mental Health Crisis: 988</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 MediNex. This is a prototype application for educational and demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/medical-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

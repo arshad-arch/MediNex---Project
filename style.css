@@ -1,0 +1,575 @@
+/* Custom CSS for MediNex Application */
+
+/* Root variables for consistent theming */
+:root {
+    --health-primary: #2563eb;
+    --health-primary-dark: #1d4ed8;
+    --health-secondary: #10b981;
+    --health-secondary-dark: #059669;
+    --health-accent: #f59e0b;
+    --health-danger: #ef4444;
+    --health-success: #22c55e;
+    --health-warning: #eab308;
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Global styles */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #374151;
+    background-color: #f9fafb;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Header enhancements */
+header {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Navigation hover effects */
+nav a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--health-primary);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Button animations */
+button {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Card hover effects */
+.bg-white {
+    transition: all 0.3s ease;
+}
+
+.bg-white:hover {
+    transform: translateY(-2px);
+}
+
+/* Step content transitions */
+.step-content {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.step-content.hidden {
+    opacity: 0;
+    display: none !important;
+}
+
+/* Symptom button styles */
+.symptom-btn {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-width: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.symptom-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.symptom-btn:hover::before {
+    left: 100%;
+}
+
+.symptom-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.symptom-btn.selected {
+    background-color: var(--health-primary) !important;
+    color: white !important;
+    border-color: var(--health-primary) !important;
+}
+
+/* Progress bar animations */
+.progress-bar {
+    transition: width 0.5s ease-in-out;
+}
+
+/* Facility filter buttons */
+.facility-filter {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.facility-filter.active {
+    border-color: var(--health-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.facility-filter:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Map container */
+#mapContainer {
+    min-height: 400px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#mapContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Alert and notification styles */
+.alert {
+    border-radius: 12px;
+    border-width: 1px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.alert-emergency {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+}
+
+.alert-warning {
+    background-color: #fffbeb;
+    border-color: #fed7aa;
+    color: #92400e;
+}
+
+.alert-info {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1e40af;
+}
+
+/* Loading animations */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive design enhancements */
+@media (max-width: 768px) {
+    /* Mobile-specific adjustments */
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    /* Smaller buttons on mobile */
+    button {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    /* Adjust grid layouts */
+    .symptom-btn {
+        padding: 12px;
+        text-align: left;
+    }
+    
+    /* Stack facility cards vertically */
+    .facility-card {
+        margin-bottom: 16px;
+    }
+    
+    /* Adjust map height on mobile */
+    #mapContainer {
+        min-height: 300px;
+    }
+    
+    /* Mobile navigation adjustments */
+    #mobileMenu {
+        box-shadow: var(--shadow-lg);
+    }
+}
+
+@media (max-width: 640px) {
+    /* Extra small screens */
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    /* Adjust step indicators for small screens */
+    .step-indicator {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .progress-line {
+        width: 40px;
+    }
+}
+
+/* Print styles */
+@media print {
+    header,
+    footer,
+    nav,
+    button,
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .bg-white {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --health-primary: #0000ff;
+        --health-secondary: #008000;
+        --health-danger: #ff0000;
+    }
+    
+    button {
+        border: 2px solid currentColor;
+    }
+    
+    .symptom-btn {
+        border-width: 3px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Dark mode support (for future implementation) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #1f2937;
+        --bg-secondary: #374151;
+        --text-primary: #f9fafb;
+        --text-secondary: #d1d5db;
+    }
+    
+    /* Note: Full dark mode implementation would require more comprehensive changes */
+}
+
+/* Focus states for accessibility */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--health-primary);
+    outline-offset: 2px;
+}
+
+.symptom-btn:focus {
+    outline: 3px solid var(--health-primary);
+    outline-offset: 3px;
+}
+
+/* Skip link for screen readers */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--health-primary);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 4px;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* Error states */
+.error {
+    border-color: var(--health-danger) !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.error-message {
+    color: var(--health-danger);
+    font-size: 14px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Success states */
+.success {
+    border-color: var(--health-success) !important;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1) !important;
+}
+
+/* Tooltip styles (for future enhancements) */
+.tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
+
+/* Custom checkbox and radio styles */
+.custom-checkbox,
+.custom-radio {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-radio {
+    border-radius: 50%;
+}
+
+.custom-checkbox:checked,
+.custom-radio:checked {
+    background-color: var(--health-primary);
+    border-color: var(--health-primary);
+}
+
+.custom-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.custom-radio:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Badge styles */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.badge-primary {
+    background-color: var(--health-primary);
+    color: white;
+}
+
+.badge-secondary {
+    background-color: var(--health-secondary);
+    color: white;
+}
+
+.badge-warning {
+    background-color: var(--health-warning);
+    color: #1f2937;
+}
+
+.badge-danger {
+    background-color: var(--health-danger);
+    color: white;
+}
+
+/* Loading spinner */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f4f6;
+    border-top: 2px solid var(--health-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Utility classes */
+.text-health-primary { color: var(--health-primary); }
+.text-health-secondary { color: var(--health-secondary); }
+.text-health-accent { color: var(--health-accent); }
+.text-health-danger { color: var(--health-danger); }
+.text-health-success { color: var(--health-success); }
+.text-health-warning { color: var(--health-warning); }
+
+.bg-health-primary { background-color: var(--health-primary); }
+.bg-health-secondary { background-color: var(--health-secondary); }
+.bg-health-accent { background-color: var(--health-accent); }
+.bg-health-danger { background-color: var(--health-danger); }
+.bg-health-success { background-color: var(--health-success); }
+.bg-health-warning { background-color: var(--health-warning); }
+
+.border-health-primary { border-color: var(--health-primary); }
+.border-health-secondary { border-color: var(--health-secondary); }
+.border-health-danger { border-color: var(--health-danger); }
+
+/* Shadow utilities */
+.shadow-health { box-shadow: var(--shadow-md); }
+.shadow-health-lg { box-shadow: var(--shadow-lg); }
+.shadow-health-xl { box-shadow: var(--shadow-xl); }
