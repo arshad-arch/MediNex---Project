@@ -382,89 +382,89 @@ const CONDITIONS_DATABASE = {
 const MOCK_FACILITIES = [
     {
         id: 'clinic_001',
-        name: 'Downtown Medical Center',
-        type: 'hospital',
-        address: '123 Main Street, Downtown',
-        phone: '(555) 123-4567',
-        distance: '0.5 miles',
+        name: 'Lokmanya Tilak Municipal General Hospital',
+        type: 'goverment hospital',
+        address: 'Sion East, Mumbai Maharashtra 400022',
+        phone: '02224076381',
+        distance: '3.0 KM',
         rating: 4.5,
         hours: {
             emergency: '24/7',
             general: 'Mon-Fri: 8AM-6PM, Sat: 9AM-3PM'
         },
         services: ['Emergency Care', 'General Medicine', 'Cardiology', 'Radiology'],
-        coordinates: { lat: 40.7128, lng: -74.0060 }
+        coordinates: { lat: 19.036355552167002, lng: 72.85994436331089 }
     },
     {
         id: 'clinic_002',
-        name: 'Family Care Clinic',
-        type: 'clinic',
-        address: '456 Oak Avenue, Midtown',
-        phone: '(555) 234-5678',
-        distance: '1.2 miles',
+        name: 'K.J. Somaiya Hospital & Research Center',
+        type: 'hospital',
+        address: 'Sion East, Sion, Mumbai, Maharashtra 400022',
+        phone: '02250954700',
+        distance: '500 m',
         rating: 4.2,
         hours: {
             general: 'Mon-Fri: 9AM-5PM, Sat: 10AM-2PM'
         },
         services: ['Family Medicine', 'Pediatrics', 'Vaccinations', 'Annual Checkups'],
-        coordinates: { lat: 40.7589, lng: -73.9851 }
+        coordinates: { lat: 19.047510220592727, lng: 72.8747430519889 }
     },
     {
         id: 'clinic_003',
-        name: 'Urgent Care Plus',
+        name: 'Care All Clinics',
         type: 'clinic',
-        address: '789 Pine Street, Uptown',
-        phone: '(555) 345-6789',
-        distance: '1.8 miles',
+        address: 'Chembur Camp, Mumbai, Maharashtra 400074',
+        phone: '08104382686',
+        distance: '4.8 km',
         rating: 4.0,
         hours: {
             general: 'Daily: 8AM-10PM'
         },
         services: ['Urgent Care', 'Minor Injuries', 'Lab Services', 'X-rays'],
-        coordinates: { lat: 40.7831, lng: -73.9712 }
+        coordinates: { lat: 19.0467089257994, lng: 72.89614877150612 }
     },
     {
         id: 'pharmacy_001',
-        name: 'HealthMart Pharmacy',
+        name: 'CritiCare Asia Multi Specialty Hospital',
         type: 'pharmacy',
-        address: '321 Elm Street, Downtown',
-        phone: '(555) 456-7890',
+        address: 'Kurla West, Kurla, Mumbai, Maharashtra 400070',
+        phone: '02267556755',
         distance: '0.8 miles',
         rating: 4.3,
         hours: {
             general: 'Mon-Fri: 8AM-8PM, Sat-Sun: 9AM-6PM'
         },
         services: ['Prescription Filling', 'Vaccinations', 'Health Screenings', 'Medical Supplies'],
-        coordinates: { lat: 40.7505, lng: -73.9934 }
+        coordinates: { lat: 19.07704748466525, lng: 72.88595379345614 }
     },
     {
         id: 'hospital_001',
-        name: 'Metropolitan General Hospital',
-        type: 'hospital',
-        address: '999 University Drive, Medical District',
-        phone: '(555) 567-8901',
-        distance: '2.5 miles',
+        name: 'CNV Healthcare Multi-Specialty Clinic',
+        type: 'clinic',
+        address: ' Wadala East, Mumbai, Maharashtra 400037  ',
+        phone: '07718846426',
+        distance: '5.0 km',
         rating: 4.7,
         hours: {
-            emergency: '24/7',
+            emergency: 'No',
             general: '24/7'
         },
-        services: ['Emergency Room', 'Surgery', 'ICU', 'Maternity', 'Oncology', 'Neurology'],
-        coordinates: { lat: 40.7282, lng: -73.9942 }
+        services: ['Ear Nose', 'ENT', 'ICU', 'Maternity', 'Oncology', 'Neurology'],
+        coordinates: { lat: 19.03803430556389, lng: 72.88002242088415 }
     },
     {
         id: 'emergency_001',
         name: 'Quick Emergency Center',
         type: 'emergency',
-        address: '147 Cedar Lane, Westside',
-        phone: '(555) 678-9012',
+        address: 'Sion, Mumbai, Maharashtra 400022',
+        phone: '02224063000',
         distance: '1.5 miles',
         rating: 4.1,
         hours: {
             emergency: '24/7'
         },
-        services: ['Emergency Care', 'Trauma Treatment', 'Critical Care', 'Ambulance Services'],
-        coordinates: { lat: 40.7614, lng: -73.9776 }
+        services: ['Emergency Care'],
+        coordinates: { lat: 19.036477378166232, lng: 72.85970567010386 }
     }
 ];
 
